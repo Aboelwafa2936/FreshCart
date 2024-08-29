@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function CategorySection() {
   return (
     <>
-      <section className="py-16 bg-gray-50 dark:bg-slate-950">
+      <section className="py-16 bg-gray-50 dark:bg-gray-950">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">

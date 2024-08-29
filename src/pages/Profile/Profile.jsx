@@ -87,14 +87,20 @@ export default function Profile() {
         </div>
 
         <div className="md:w-2/3 space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Profile Information</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+            Profile Information
+          </h2>
           <form>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col">
-                <label className="font-bold text-gray-700 dark:text-gray-300">Name:</label>
+                <label className="font-bold text-gray-700 dark:text-gray-300">
+                  Name:
+                </label>
                 <input
                   className={`px-4 py-2 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-900 dark:text-white ${
-                    formik.touched.name && formik.errors.name ? 'border-red-500' : ''
+                    formik.touched.name && formik.errors.name
+                      ? "border-red-500"
+                      : ""
                   }`}
                   type="text"
                   name="name"
@@ -104,14 +110,20 @@ export default function Profile() {
                   readOnly={!isEditing}
                 />
                 {formik.touched.name && formik.errors.name ? (
-                  <div className="text-red-500 text-sm mt-1">{formik.errors.name}</div>
+                  <div className="text-red-500 text-sm mt-1">
+                    {formik.errors.name}
+                  </div>
                 ) : null}
               </div>
               <div className="flex flex-col">
-                <label className="font-bold text-gray-700 dark:text-gray-300">Email:</label>
+                <label className="font-bold text-gray-700 dark:text-gray-300">
+                  Email:
+                </label>
                 <input
                   className={`px-4 py-2 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-900 dark:text-white ${
-                    formik.touched.email && formik.errors.email ? 'border-red-500' : ''
+                    formik.touched.email && formik.errors.email
+                      ? "border-red-500"
+                      : ""
                   }`}
                   type="text"
                   name="email"
@@ -121,24 +133,32 @@ export default function Profile() {
                   readOnly={!isEditing}
                 />
                 {formik.touched.email && formik.errors.email ? (
-                  <div className="text-red-500 text-sm mt-1">{formik.errors.email}</div>
+                  <div className="text-red-500 text-sm mt-1">
+                    {formik.errors.email}
+                  </div>
                 ) : null}
               </div>
               <div className="flex flex-col">
-                <label className="font-bold text-gray-700 dark:text-gray-300">Role:</label>
+                <label className="font-bold text-gray-700 dark:text-gray-300">
+                  Role:
+                </label>
                 <input
                   className="px-4 py-2 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-900 dark:text-white"
                   type="text"
                   name="role"
-                  value={'user'}
+                  value={"user"}
                   readOnly
                 />
               </div>
               <div className="flex flex-col">
-                <label className="font-bold text-gray-700 dark:text-gray-300">Phone:</label>
+                <label className="font-bold text-gray-700 dark:text-gray-300">
+                  Phone:
+                </label>
                 <input
                   className={`px-4 py-2 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-900 dark:text-white ${
-                    formik.touched.phone && formik.errors.phone ? 'border-red-500' : ''
+                    formik.touched.phone && formik.errors.phone
+                      ? "border-red-500"
+                      : ""
                   }`}
                   type="text"
                   name="phone"
@@ -148,20 +168,33 @@ export default function Profile() {
                   readOnly={!isEditing}
                 />
                 {formik.touched.phone && formik.errors.phone ? (
-                  <div className="text-red-500 text-sm mt-1">{formik.errors.phone}</div>
+                  <div className="text-red-500 text-sm mt-1">
+                    {formik.errors.phone}
+                  </div>
                 ) : null}
               </div>
             </div>
           </form>
-
           <div className="flex justify-end gap-4 mt-4">
             <button
               type="button"
-              className={`bg-${isEditing ? 'blue-500' : 'green-500'} text-white px-4 py-2 rounded-md shadow-sm hover:bg-${isEditing ? 'blue-600' : 'green-600'} transition`}
+              className={`${
+                isEditing
+                  ? "bg-blue-500 hover:bg-blue-600"
+                  : "bg-green-500 hover:bg-green-600"
+              } text-white px-4 py-2 rounded-md shadow-sm transition`}
               onClick={handleButtonClick}
               disabled={isLoading}
             >
-              {isEditing ? (!isLoading ? 'Update' : <i className='fa-solid fa-spinner fa-spin'></i>) : 'Edit'}
+              {isEditing ? (
+                !isLoading ? (
+                  "Update"
+                ) : (
+                  <i className="fa-solid fa-spinner fa-spin"></i>
+                )
+              ) : (
+                "Edit"
+              )}
             </button>
           </div>
         </div>

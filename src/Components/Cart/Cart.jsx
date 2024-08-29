@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 
-export default function Cart({ isOpen, toggleCart }) {
+export default function Cart({ isOpen , setIsOpen, toggleCart }) {
   const { cartProducts, deleteProductFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   // Ensure cartProducts is not null or undefined
   const products = cartProducts?.products || [];
   const isCartEmpty = products.length === 0;
   
-  
+  function navigation(navigationDistance){
+    setIsOpen(false);
+    navigate(navigationDistance);
+  }
 
   return (
     <div>
@@ -82,12 +86,12 @@ export default function Cart({ isOpen, toggleCart }) {
             }
             )}
             <div className="flex items-center justify-center gap-3">
-              <Link to={'/cart'} className="bg-white border-2 border-gray-800 p-2 text-gray-800 dark:bg-gray-800 dark:border-white dark:text-white text-center rounded mt-5 hover:text-white hover:bg-gray-800 dark:hover:text-gray-800 dark:hover:bg-white transition-all duration-700">
+              <button onClick={()=>{navigation('cart')}} className="bg-white border-2 border-gray-800 p-2 text-gray-800 dark:bg-gray-800 dark:border-white dark:text-white text-center rounded mt-5 hover:text-white hover:bg-gray-800 dark:hover:text-gray-800 dark:hover:bg-white transition-all duration-700">
                 View Cart
-              </Link>
-              <Link to={'checkout/'+cartProducts?._id} className="bg-gray-800 p-2 text-white dark:bg-white dark:text-gray-800 text-center rounded mt-5 hover:text-gray-800 hover:border-2 hover:border-gray-800 hover:bg-white dark:hover:text-white dark:hover:border-white dark:hover:bg-gray-800 transition-all duration-700">
+              </button>
+              <button onClick={()=>{navigation('checkout/'+cartProducts?._id)}}  className="bg-gray-800 p-2 text-white dark:bg-white dark:text-gray-800 text-center rounded mt-5 hover:text-gray-800 hover:border-2 hover:border-gray-800 hover:bg-white dark:hover:text-white dark:hover:border-white dark:hover:bg-gray-800 transition-all duration-700">
                 Check Out 
-              </Link>
+              </button>
             </div>
           </div>
           
@@ -97,3 +101,4 @@ export default function Cart({ isOpen, toggleCart }) {
   );
 }
 
+{/*to={'checkout/'+cartProducts?._id}*/ }

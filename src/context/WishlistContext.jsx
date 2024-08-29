@@ -36,6 +36,13 @@ export function WishlistProvider({ children }) {
           token: localStorage.getItem('token')
         }
       });
+      toast.success('Product has been successfully added to your wishlist', {
+        position: "bottom-right",
+        autoClose: 2000,
+        transition: Slide,
+        theme: 'colored'
+      });
+      
       fetchWishlist()
       console.log(data.data);
       

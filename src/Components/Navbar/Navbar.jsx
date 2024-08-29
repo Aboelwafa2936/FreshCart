@@ -22,9 +22,22 @@ export default function Navbar() {
   const { categoryId , categoryName } = useContext(CategoryContext);
   const {setUser} = useContext(UserContext)
 
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
-  const toggleWishlist = () => setIsWishlistOpen(!isWishlistOpen);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen)
+    setIsWishlistOpen(false)
+    setIsMenuOpen(false)
+  };
+  const toggleWishlist = () => {
+    setIsWishlistOpen(!isWishlistOpen)
+    setIsCartOpen(false)
+    setIsMenuOpen(false)
+
+  };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+    setIsWishlistOpen(false)
+    setIsCartOpen(false)
+  };
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const dropdownVariants = {
@@ -36,6 +49,10 @@ export default function Navbar() {
     open: { opacity: 1, y: 0 },
     closed: { opacity: 0, y: -20 }
   };
+
+  function closingMenu(){
+    setIsMenuOpen(false)
+  }
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -62,7 +79,7 @@ export default function Navbar() {
               <Link to={'/'}><i className="fa-solid fa-cart-plus"></i> FreshCart</Link>
             </div>
             {userToken && (
-              <ul className="hidden md:flex items-center space-x-8 ms-5">
+              <ul className="hidden md:flex items-center space-x-8 md:space-x-3 ms-10">
                 <li><NavLink to={'/'} className="text-gray-800 text-[15px] xl:text-lg dark:text-white" activeClassName="font-semibold">Home</NavLink></li>
                 <li
                   className="text-gray-800 text-[15px] xl:text-lg dark:text-white flex items-center"
@@ -163,10 +180,10 @@ export default function Navbar() {
                     {wishlistCounter}
                   </div>
                 </button>
-                <button className="cursor-pointer hidden md:inline-block" onClick={handleLogout}>
+                <button className="cursor-pointer hidden md:inline-block" onClick={()=> {handleLogout(); closingMenu()}}>
                 <i  className="fa-solid fa-arrow-right-from-bracket text-gray-950 dark:text-white"></i>
                 </button>
-                <Link to={'/profile'}><i className="fas fa-user-ninja dark:text-white"></i></Link>
+                <Link to={'/profile'} onClick={()=> { setIsCartOpen(false); setIsMenuOpen(false); setIsWishlistOpen(false)}}><i className="fas fa-user-ninja dark:text-white"></i></Link>
                 <button onClick={toggleDarkMode} className="text-gray-800 dark:text-white hidden md:block">
                   {darkMode ? (
                     <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -203,7 +220,7 @@ export default function Navbar() {
   >
     {userToken ? (
       <ul>
-        <li className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
+        <li onClick={()=> closingMenu()} className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
           <NavLink
             to="/"
             className="text-gray-800 dark:text-white"
@@ -212,7 +229,7 @@ export default function Navbar() {
             Home
           </NavLink>
         </li>
-        <li className="relative mb-3">
+        <li onClick={()=> closingMenu()} className="relative mb-3">
           <button
             className="w-full flex justify-between items-center hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700 dark:text-white"
             onClick={() => setIsMenuHovered(!isMenuHovered)}
@@ -280,7 +297,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </li>
-        <li className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
+        <li onClick={()=> closingMenu()} className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
           <NavLink
             to="/products"
             className="text-gray-800 dark:text-white"
@@ -289,7 +306,7 @@ export default function Navbar() {
             Shop
           </NavLink>
         </li>
-        <li className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
+        <li onClick={()=> closingMenu()} className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
           <NavLink
             to="/contact"
             className="text-gray-800 dark:text-white"
@@ -298,7 +315,7 @@ export default function Navbar() {
             Contact
           </NavLink>
         </li>
-        <li className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
+        <li onClick={()=> closingMenu()} className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
           <NavLink
             to="/about"
             className="text-gray-800 dark:text-white"
@@ -307,7 +324,7 @@ export default function Navbar() {
             About
           </NavLink>
         </li>
-        <li className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
+        <li onClick={()=> closingMenu()} className="mb-3 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700">
           <NavLink
             to="/allorders"
             className="text-gray-800 dark:text-white"
@@ -321,10 +338,10 @@ export default function Navbar() {
       <>
         <div className="flex items-center justify-between">
         <div>
-        <Link to="/login" className="text-gray-800 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700 dark:text-white block">
+        <Link to="/login" onClick={ ()=> closingMenu()} className="text-gray-800 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700 dark:text-white block">
           Login
         </Link>
-        <Link to="/register" className="text-gray-800 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700 dark:text-white block">
+        <Link to="/register" onClick={ ()=> closingMenu()} className="text-gray-800 hover:bg-gray-200 py-2 px-4 dark:hover:bg-gray-700 dark:text-white block">
           Register
         </Link>
         </div>
@@ -348,7 +365,7 @@ export default function Navbar() {
     {userToken && (
       <div className="flex justify-between items-center">
         <i
-          onClick={handleLogout}
+          onClick={()=>{handleLogout(); closingMenu()}}
           className="fa-solid fa-arrow-right-from-bracket text-gray-950 dark:text-white"
         ></i>
         <button onClick={toggleDarkMode} className="text-gray-800 dark:text-white">
@@ -392,8 +409,8 @@ export default function Navbar() {
 )}
 
       </nav>
-      <Cart isOpen={isCartOpen} toggleCart={toggleCart} />
-      <Wishlist isOpen={isWishlistOpen} toggleWishlist={toggleWishlist} />
+      <Cart isOpen={isCartOpen} setIsOpen={setIsCartOpen} toggleCart={toggleCart} />
+      <Wishlist isOpen={isWishlistOpen} setIsOpen={setIsWishlistOpen} toggleWishlist={toggleWishlist} />
     </header>
   );
 }

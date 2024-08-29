@@ -9,7 +9,7 @@ export default function BlogHighlights() {
     <>
     
     {/* Blog Highlights Section */}
-    <section className="py-16 bg-gray-100 dark:bg-slate-950 dark:text-white">
+    <section className="py-16 bg-gray-100 dark:bg-gray-950 dark:text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">From Our Blog</h2>
         {/* Implement a grid for blog posts */}

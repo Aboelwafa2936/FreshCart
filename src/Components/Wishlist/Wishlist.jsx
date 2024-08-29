@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { WishlistContext } from "../../context/WishlistContext";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import WishlistProduct from "../WishlistProduct/WishlistProduct";
 
-export default function Wishlist({ isOpen, toggleWishlist }) {
+export default function Wishlist({ isOpen, setIsOpen ,  toggleWishlist }) {
   const { wishlist , removeProductFromWishlist } = useContext(WishlistContext);
   const isWishlistEmpty = wishlist?.length === 0;
-
+  const navigate = useNavigate();
+  function Navigation(navigationDistance){
+    setIsOpen(false);
+    navigate(navigationDistance)
+  }
   return (
     <div>
       <div
@@ -38,9 +42,9 @@ export default function Wishlist({ isOpen, toggleWishlist }) {
           <div className="overflow-y-auto h-[calc(100%-4rem)] p-4">
               <WishlistProduct WishlistProduct={wishlist} removeProductFromWishlist={removeProductFromWishlist}/>
             <div className="flex items-center justify-center gap-3">
-              <Link to={'/wishlistItems'} className="bg-white border-2 border-gray-800 p-2 text-gray-800 dark:bg-gray-800 dark:border-white dark:text-white text-center rounded mt-5 hover:text-white hover:bg-gray-800 dark:hover:text-gray-800 dark:hover:bg-white transition-all duration-700">
+              <button onClick={()=> Navigation('/wishlistItems')}  className="bg-white border-2 border-gray-800 p-2 text-gray-800 dark:bg-gray-800 dark:border-white dark:text-white text-center rounded mt-5 hover:text-white hover:bg-gray-800 dark:hover:text-gray-800 dark:hover:bg-white transition-all duration-700">
                 View Wishlist
-              </Link>
+              </button>
             </div>
           </div>
         )}

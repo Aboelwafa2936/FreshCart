@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick'
 
-export default function ImgSlider({ imgs = [], answer , showArrows}) {
+export default function ImgSlider({ imgs , answer , showArrows}) {
     var settings = {
         dots: answer,
         infinite: answer,
@@ -15,7 +15,9 @@ export default function ImgSlider({ imgs = [], answer , showArrows}) {
   return (
     <>
       <Slider {...settings}>
-        {imgs.map((img, index)  => {
+        {imgs?.map((img, index)  => {
+          console.log(img);
+          
           return (
             <img  key ={index}
               className="w-full rounded-md object-contain max-w-lg mx-auto"
