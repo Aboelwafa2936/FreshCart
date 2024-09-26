@@ -31,7 +31,7 @@ FreshCart is an eCommerce application built with React and Vite, designed to off
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Aboelwafa2936/FilmVoyag.git
+   git clone https://github.com/Aboelwafa2936/FreshCart.git
 2. Navigate to the project directory:
   cd <FreshCart>
 3. Install the dependencies:
