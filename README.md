@@ -4,7 +4,7 @@ FreshCart is an eCommerce application built with React and Vite, designed to off
 
 ## Demo
 
-🔗 [View Live Demo](https://Aboelwafa2936/.github.io/FreshCart)
+🔗 [View Live Demo](https://Aboelwafa2936.github.io/FreshCart/)
 
 ## Repository
 
